@@ -1,0 +1,105 @@
+
+{% extends 'hod_base.html' %}
+{% block content %}
+
+
+    <!-- Main section start -->
+    <div class="main-content" id="maincontent">
+      <div class="main-container">
+        <!-- chart card start -->
+        <div class="chart-card manage-staff-title">
+
+          <h2>Manage Session</h2>
+          <a href=""><button type="button" class="btn btn-primary mt-4">Add Session</button></a>
+
+
+        </div>
+        <!-- chart card end -->
+
+
+        <!-- activities session start-->
+        <div class="activities-section mt-4">
+          <div class="manage-staff">
+            <div class="table-title md-6">
+              <h3>Session Details</h3>
+            </div>
+            <div class="search md-4">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+          <hr>
+
+          <table class="table  activity">
+            <thead>
+              <tr>
+                <th scope="col">S/N</th>
+                
+                <th scope="col">session start</th>
+                <th scope="col">session end</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action 2</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+              
+                <td>Otto</td>
+                <td>edison@gmail.com</td>
+                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
+
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                
+                <td>Thornton</td>
+                <td>edison@gmail.com</td>
+                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+               
+                <td>Edison</td>
+                <td>edison@gmail.com</td>
+                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+               
+                <td>Edison</td>
+                <td>edison@gmail.com</td>
+                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- activities session end-->
+      </div>
+
+
+
+
+
+    </div>
+    <!-- Main section stop -->
+
+  </div>
+  <!-- container-section stop -->
+
+
+
+
+
+
+
+
+{% endblock %}

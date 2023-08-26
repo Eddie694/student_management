@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color:white;
+  --text-color: white;
+  --side_nav_width: 260px;
+  --top-nav-height:4rem;
+  --content-width: calc(100% - var(--side_nav_width));
+  --nav-section-height: 50px;
+}
+
+/* Header section start */
+.section{
+  width: 100%;
+  background-color: var(--background-color);
+  position: fixed;
+  z-index: 1;
+  height: var(--nav-section-height);
+  
+}
+.section .header{
+  width: 100%;
+  padding:10px; 
+  
+
+}
+.section .header .nav-bar{
+  width: 100%;
+  
+
+}
+.nav-bar .nav-list{
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+.nav-bar .nav-list li{
+  list-style: none;
+}
+.nav-bar .nav-list img{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+/* Header section end */
+
+/* content */
+.container-section {
+  display: flex;
+  padding-top: var(--nav-section-height);
+  width: 100%;
+  gap:20px;
+}
+/* side nav start */
+.side-nav{
+  position: relative;
+  width: var(--side_nav_width);
+  background-color: aqua;
+  transition: width 0.3s, opacity 0.3s;
+
+ 
+}
+
+#closenav{
+  float: right;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: x-large;
+  padding-right: 1rem;
+}
+
+.side-nav .side-nav-list{
+  width: var(--side_nav_width);
+  position: fixed;
+  background-color: blanchedalmond;
+  top:var(--nav-section-height);
+  height: 100%;
+  transition: width 0.3s, opacity 0.3s;
+}
+.side-nav .side-nav-list li{
+  list-style: none; 
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.side-nav .side-nav-list li a{
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: space-between;
+  color: black;
+}
+/* side nav end */
+/* Minimize side navigation  start*/
+
+.side-nav .active{
+  width: 5rem;
+  font-size: 1rem;
+  transition: width 0.3s, opacity 0.3s;
+}
+.side-nav .side-nav-list .active{
+  width: 5rem;
+  position: fixed;
+  background-color: blanchedalmond;
+  top:var(--nav-section-height);
+  height: 100%;
+  transition: width 0.3s, opacity 0.3s;
+
+}
+.main-content .active{
+  width: calc(100% - 5rem);
+  background-color: antiquewhite;
+   
+}
+.side-nav-list li a.active {
+  background-color: #007bff; 
+  color: #fff; 
+}
+
+/* Minimize side navigation  stop*/
+
+/* main-content start */
+.main-content{
+  width: var(--content-width);
+  background-color: antiquewhite;
+   
+}
+.main-container{
+  width: 100%;
+  padding: 10px 20px 20px;
+  display: inline-block;
+
+}
+
+.chart-card{
+  width: 100%;
+  padding-left: 15px;
+  /* padding-top: 15px; */
+  
+}
+.main-content .row{
+  display:flex;
+  justify-content: space-between;
+  /* background-color: green; */
+  width: 100%;
+  flex-wrap: wrap;
+
+}
+
+.main-content .row .card-container {
+  display: inline-flex;
+  width: 24%;
+  align-items: center;
+  background-color:azure;
+  border-radius: 10px;
+  flex-direction: row-reverse;
+  
+}
+
+.card-container .number{
+  font-size: 30px;
+  font-weight: 500 ;
+  color: rgb(12, 121, 121);
+}
+.card-container .name{
+  font-size: 20px;
+  font-weight: 600 ;
+  color: rgb(105, 107, 107);
+}
+
+.icon-box {
+  font-size: 45px;
+  color:  rgb(12, 121, 121);;
+}
+/* main-content end */
+
+/* Chart section start */
+.chart-section .chart-row{
+  display: inline-block;
+  width: 100%;
+
+}
+.chart-section .chart-row .chart-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between; 
+  align-items: center!important;
+  padding-top: 1rem!important;
+}
+.chart-row .chart-container .chart{
+  width: 49%!important;
+  height: 250px!important;
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 10px;
+
+}
+/* Chart section End */
+/* activities session start */
+.activities-section{
+  padding-top: 2rem;
+  flex-wrap: wrap;
+  
+}
+.activities-section table{
+  width: 100%!important;
+}
+/* activities session start */
+
+/* Manage teacher start */
+.search{
+  padding: 1rem;
+}
+
+.manage-staff {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.manage-staff-title {
+  padding-left: 0;
+  color: rgb(77, 73, 73);
+  padding-top: 5px;
+}
+
+/* Manage teacher end */

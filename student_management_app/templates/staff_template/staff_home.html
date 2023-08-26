@@ -1,0 +1,183 @@
+{% extends 'login_base.html' %}
+{% load static %}
+{% block title %}
+<title>Staff Home</title>
+{% endblock title %}
+{% block content %}
+  
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <div class="logo d-flex ">
+          <img src="images/logo.JPG">
+          <p style="font-family: 'Pacifico', cursive; font-size: 25px; color:aliceblue;">CMS</p>
+        </div>
+        <hr>
+        <div class="menu">
+          <li>
+            <a href="index.html">
+              <div class="icon">
+                <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;
+              </div>
+              <span>Dashboard</span> </a>
+          </li>
+          <li>
+            <a href="manage-staff.html">
+              <div class="icon">
+                <i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;
+              </div>
+              <span>Manage Staff</span> </a>
+          </li>
+          <li>
+            <a href="manage-student.html">
+              <div class="icon">
+                <i class="fas fa-user-graduate"></i>&nbsp;&nbsp;
+              </div>
+              <span>Manage Student</span> </a>
+          </li>
+          <li>
+            <a href="manage-course.html">
+              <div class="icon">
+                <i class="fas fa-book"></i>&nbsp;&nbsp;
+              </div>
+              <span>Manage Course</span> </a>
+          </li>
+          <li>
+            <a href="manage-student.html">
+              <div class="icon">
+                <i class="fas fa-book-open"></i>&nbsp;&nbsp;
+              </div>
+              <span>Manage Subject</span> </a>
+          </li>
+          <li>
+            <a href="manage-session.html">
+              <div class="icon">
+                <i class="fas fa-server"></i>&nbsp;&nbsp;
+              </div>
+              <span>Manage Session</span> </a>
+          </li>
+          <li>
+            <a href="add-staff.html">
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>&nbsp;&nbsp;
+              </div>
+              <span>Add Staff</span> </a>
+          </li>
+          <li>
+            <a href="add-student.html">
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>&nbsp;&nbsp;
+              </div>
+              <span>Add Student</span></a>
+          </li>
+    
+          <li>
+            <a href="add-course.html">
+              <div class="icon">
+                <i class="fas fa-folder-plus"></i>&nbsp;&nbsp;
+              </div>
+              <span>Add Course</span> </a>
+          </li>
+          <li>
+            <a href="add-subject.html">
+              <div class="icon">
+                <i class="fas fa-folder-plus"></i>&nbsp;&nbsp;
+              </div>
+              <span>Add Subject</span> </a>
+          </li>
+    
+          <li>
+            <a href="add-session.html">
+              <div class="icon">
+                <i class="fas fa-plus"></i>&nbsp;&nbsp;
+              </div>
+              <span>Add Session</span> </a>
+          </li>
+    
+          <li>
+            <a href="student-feedback.html">
+              <div class="icon">
+                <i class="fas fa-comments"></i>&nbsp;&nbsp;
+              </div>
+              <span>Student Feedback</span> </a>
+          </li>
+          <li>
+            <a href="staff-feedback.html">
+              <div class="icon">
+                <i class="fas fa-comments"></i>&nbsp;&nbsp;
+              </div>
+              <span>Staff Feedback</span> </a>
+          </li>
+        </div>
+    
+      </div>
+  
+      </div>
+      
+    <div class="main">
+      <div class="row card-board">
+  
+        <div class="card-container">
+          <div class="card-body">
+            <div class="number">48239</div>
+            <div class="name">Students</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+        </div>
+  
+        <div class="card-container">
+          <div class="card-body">
+            <div class="number">48239</div>
+            <div class="name">Teachers</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+        </div>
+  
+        <div class="card-container">
+          <div class="card-body">
+            <div class="number">48239</div>
+            <div class="name">Courses</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-book"></i>
+          </div>
+        </div>
+  
+        <div class="card-container">
+          <div class="card-body">
+            <div class="number">48239</div>
+            <div class="name">Subjects</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-book-open"></i>
+          </div>
+        </div>
+      </div>
+      <div class="chart row">
+        <div class="chart-container">
+          <canvas id="barchart"></canvas>
+          
+        </div>
+        <div class="chart-container">
+          
+          <canvas id="chart2"></canvas>
+          
+        </div>
+        <div class="chart-container">
+          <canvas id="chart3"></canvas>
+          
+        </div>
+
+      </div>
+  
+
+    </div>
+    </div>
+    
+  </div>
+  
+    
+{% endblock %}

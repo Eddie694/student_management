@@ -1,0 +1,154 @@
+
+{% extends 'hod_base.html' %}
+{% block content %}
+    
+
+    <!-- Main section start -->
+    <div class="main-content" id="maincontent">
+      <div class="main-container">
+        <!-- chart card start -->
+        <div class="chart-card">
+          <div class="row">
+            <div class="card-container">
+              <div class="icon-box">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <div class="card-body">
+                <div class="number">48239</div>
+                <div class="name">Students</div>
+              </div>
+
+            </div>
+
+            <div class="card-container">
+              <div class="icon-box">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <div class="card-body">
+                <div class="number">48239</div>
+                <div class="name">Teachers</div>
+              </div>
+
+            </div>
+
+            <div class="card-container">
+              <div class="icon-box">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="card-body">
+                <div class="number">48239</div>
+                <div class="name">Courses</div>
+              </div>
+
+            </div>
+
+            <div class="card-container">
+              <div class="icon-box">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <div class="card-body">
+                <div class="number">48239</div>
+                <div class="name">Subjects</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- chart card end -->
+
+        <!-- chart section start -->
+        <div class="chart-section">
+          <div class="chart-row ">
+            <div class="chart-container">
+              <div class="chart">
+                <canvas id="barchart"></canvas>
+              </div>
+              <div class="chart">
+                <canvas id="pie"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <div class="chart">
+                <canvas id="chart3"></canvas>
+              </div>
+              <div class="chart">
+                <canvas id="barchart2" style="padding-right:4px;"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- chart section end -->
+
+        <!-- activities session start-->
+      <div class="activities-section">
+        <table class="table  activity">
+          <thead>
+            <tr>
+              <th scope="col">S/N</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Email</th>
+              <th scope="col">User type</th>
+              <th scope="col">time</th>
+              <th scope="col">date</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>edison@gmail.com</td>
+              <td>@mdo</td>
+              <td>time</td>
+              <td>date</td>
+              
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>edison@gmail.com</td>
+              <td>@mdo</td>
+              <td>time</td>
+              <td>date</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >Larry</td>
+              <td>Edison</td>
+              <td>edison@gmail.com</td>
+              <td>@mdo</td>
+              <td>time</td>
+              <td>date</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- activities session end-->
+      </div>
+      
+
+
+
+
+    </div>
+    <!-- Main section stop -->
+
+  </div>
+  <!-- container-section stop -->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
