@@ -45,15 +45,15 @@
   }
 
 
-  function toggleActive(clickedLink) {
-    const links = document.querySelectorAll('.side-nav-list li a'); // Select all links
+  // function toggleActive(clickedLink) {
+  //   const links = document.querySelectorAll('.side-nav-list li a'); // Select all links
   
-    links.forEach(link => {
-      if (link === clickedLink) {
-        link.classList.toggle('active'); // Toggle "active" class on clicked link
-      } else {
-        link.classList.remove('active'); // Remove "active" class from other links
-      }
-    });
-  }
+  //   links.forEach(link => {
+  //     if (link === clickedLink) {
+  //       link.classList.toggle('active'); // Toggle "active" class on clicked link
+  //     } else {
+  //       link.classList.remove('active'); // Remove "active" class from other links
+  //     }
+  //   });
+  // }
   

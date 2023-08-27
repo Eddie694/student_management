@@ -16,10 +16,11 @@
 
                 <!-- activities session start-->
                 <div class="activities-section">
-                    <form>
+                    <form method="post">
+                        {% csrf_token %}
                         <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Course Name:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          <label for="course_name" class="form-label">Course Name:</label>
+                          <input type="text" class="form-control" id="course_name" aria-describedby="emailHelp" name="course_name">
                         </div>
                         <button type="submit" class="btn btn-primary">Add Course</button>
                       </form>

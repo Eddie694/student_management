@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import SessionYearModel, Course, Subject, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, NotificationStudent, NotificationStaff, StudentResult
 from accounts.models import Student, Staff, AdminHOD
+from django.contrib import messages
+from .forms import SubjectForm
+from accounts.models import CustomUser
+from accounts.forms import AddStudentForm
+
 
 
 def	admin_home (request):
@@ -15,12 +20,28 @@ def	manage_staff (request):
     return render(request, 'hod_template/manage-staff.html')
 
 # Course Session
-def	add_course (request):
+def	add_course(request):
+    if request.method == 'POST':
+        course_name = request.POST.get('course_name')
+        
+        new_course = Course.objects.create(course_name=course_name)
+        
+        messages.success(request, "New course added")
+        
+        return redirect('student_management_app:manage_course')
+       
+    
     return render(request, 'hod_template/add-course.html')
 
 
 def	manage_course (request):
-    return render(request, 'hod_template/manage-course.html')
+    courses = Course.objects.all().order_by('-created_at')
+    
+    context = {
+        'courses': courses
+    }
+    
+    return render(request, 'hod_template/manage-course.html' , context)
 
 #Session Area
 def	manage_session (request):
@@ -31,20 +52,74 @@ def	add_session	(request):
 
 
 #Student Session
-def	add_student (request):
-    return render(request, 'hod_template/add-student.html')
+def add_student(request):
+    if request.method == 'POST':
+        form = AddStudentForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, "New student added")
+            return redirect('student_management_app:manage_student')
+        else:
+            form = AddStudentForm()
+
+        context = {
+            'form': form,
+        }
+
+        return render(request, 'hod_template/add-student.html', context)
+    else:
+        form = AddStudentForm()
+        context = {
+            'form': form,
+        }
+
+        return render(request, 'hod_template/add-student.html', context)
+
 
 def	manage_student (request):
-    return render(request, 'hod_template/manage-student.html')
+    students = Student.objects.all().order_by('-created_at')
+    
+    context = {
+        'students':students,
+    }
+    
+    return render(request, 'hod_template/manage-student.html', context)
 
 
 
 #subject session
 def	manage_subject (request):
-    return render(request, 'hod_template/manage-subject.html')
+    subjects = Subject.objects.all()
+    
+    context={
+        'subjects':subjects
+    }
+    return render(request, 'hod_template/manage-subject.html', context)
 
 def	add_subject (request):
-    return render(request, 'hod_template/add-subject.html')
+    if request.method == 'POST':
+        form = SubjectForm(request.POST)
+        print(form)
+        subject_name=form.cleaned_data['subject_name']
+        course_id=form.cleaned_data['course_id']
+        staff_id=form.cleaned_data['staff_id']
+        
+        course_instance = Course.objects.get(pk=course_id)
+        staff_instance = CustomUser.objects.get(pk=staff_id)
+            
+        new_subject = Subject(
+            subject_name=subject_name,
+            course_id=course_instance,
+            staff_id=staff_instance,
+        )
+        new_subject.save()
+            
+        messages.success(request, "New Subject added ")
+        return redirect ('student_management_app:manage_subject')
+    else:
+        form = SubjectForm()
+        
+    return render(request, 'hod_template/add-subject.html', {'form': form} )
 
 
 

@@ -16,18 +16,20 @@
 
                 <!-- activities session start-->
                 <div class="activities-section">
-                    <form>
+                    <form method="post">
+                         {% csrf_token %}
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label">Staff:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          {{form.staff_id}}
+                          
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Course:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            {{form.course_id}}
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Subject:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            {{form.subject_name}}
                         </div>
                         <button type="submit" class="btn btn-primary">Add Subject</button>
                       </form>

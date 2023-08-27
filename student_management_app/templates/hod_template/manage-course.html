@@ -9,13 +9,20 @@
         <div class="chart-card manage-staff-title">
 
           <h2>Manage Courses</h2>
-          <a href=""><button type="button" class="btn btn-primary mt-4">Add Course</button></a>
+          <a href="{% url 'student_management_app:add_course' %}"><button type="button" class="btn btn-primary mt-4">Add Course</button></a>
 
 
         </div>
         <!-- chart card end -->
+        {% for message in messages %}
+        <div>
+            {{message}}
+          </div>
 
+        </div>
+         
 
+        {% endfor %}
         <!-- activities session start-->
         <div class="activities-section mt-4">
           <div class="manage-staff">
@@ -43,40 +50,19 @@
 
               </tr>
             </thead>
+            
             <tbody>
+              {% for course in courses %}
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>edison@gmail.com</td>
+                <th scope="row">{{course.id}}</th>
+                <td>{{course.course_name}}</td>
+                <td>{{course.created_at}}</td>
+                <td>{{ course.updated_at}}</td>
                 <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
 
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>edison@gmail.com</td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>Edison</td>
-                <td>edison@gmail.com</td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Kingsley</td>
-                <td>Edison</td>
-                <td>edison@gmail.com</td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>

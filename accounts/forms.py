@@ -84,13 +84,17 @@ class AddStudentForm(forms.Form):
     #For Displaying Session Years
     try:
         session_years = SessionYearModel.objects.all()
+        print(session_years)
         session_year_list = []
         for session_year in session_years:
-            single_session_year = (session_year.id, str(session_year.session_start_year)+" to "+str(session_year.session_end_year))
+            single_session_year = (session_year.id, str(session_year.session_start_year.strftime('%Y'))+" to "+str(session_year.session_end_year.strftime('%Y')))
+            print(single_session_year)
             session_year_list.append(single_session_year)
+            print(session_year_list)
              
     except:
         session_year_list = []
+    
      
     gender_list = (
         ('Male','Male'),
@@ -109,6 +113,27 @@ class AddStudentForm(forms.Form):
     profile_pic = forms.FileField(label="Profile Pic",
                                   required=False,
                                   widget=forms.FileInput(attrs={"class":"form-control"}))
+    
+    def save(self):
+        # Extract cleaned data from the form
+        email = self.cleaned_data['email']
+        password = self.cleaned_data['password']
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
+
+        # Create a new user with the provided email and password
+        user = CustomUser.objects.create_user(
+            username=email,  # You can use the email as the username
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            user_type=CustomUser.STUDENT,
+        )
+        
+        user.save()
+        
+        return user
  
  
  
