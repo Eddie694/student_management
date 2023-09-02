@@ -18,14 +18,13 @@
       .side-nav .side-nav-list{
         width: 5rem;
         position: fixed;
-        background-color: blanchedalmond;
         top:var(--nav-section-height);
         height: 100%;
       
       }
       .main-content{
         width: calc(100% - 5rem) !important;
-        background-color: antiquewhite;
+       
          
       }
       #closenav {

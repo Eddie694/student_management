@@ -2,14 +2,27 @@ from django.shortcuts import render, redirect
 from .models import SessionYearModel, Course, Subject, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, NotificationStudent, NotificationStaff, StudentResult
 from accounts.models import Student, Staff, AdminHOD
 from django.contrib import messages
-from .forms import SubjectForm
+from .forms import SubjectForm, SessionForm
 from accounts.models import CustomUser
 from accounts.forms import AddStudentForm
 
 
 
 def	admin_home (request):
-    return render(request, 'hod_template/admin_home.html')
+    total_teachers = Staff.objects.all().count()
+    total_students = Student.objects.all().count()
+    total_courses = Course.objects.all().count()
+    total_subjects = Subject.objects.all().count()
+    
+    
+    
+    contex ={
+        'total_teachers':total_teachers,
+        'total_students': total_students,
+        'total_courses': total_courses,
+        'total_subjects':total_subjects
+    }
+    return render(request, 'hod_template/admin_home.html', contex ) 
 
 # staff session 
 
@@ -48,6 +61,14 @@ def	manage_session (request):
     return render(request, 'hod_template/manage-session.html')
 
 def	add_session	(request):
+    if request.method == 'POST':
+        form=SessionForm(request.POST)
+        if form.is_valid():
+            new_session = form.save()
+            
+            messages.success(request, "New session added ")
+            return redirect("student_management_app:manage_session")
+    
     return render(request, 'hod_template/add-session.html')
 
 

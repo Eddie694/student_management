@@ -1,9 +1,25 @@
 from django import forms
-from .models import Subject, Course
+from .models import Subject, Course, SessionYearModel
 from accounts.models import Staff
 from accounts.models import CustomUser
 
 
+class DateInput(forms.DateInput):
+    input_type = "date"
+
+
+class SessionForm(forms.Form):
+    session_start_year = forms.DateField(label="section start", required=True, widget=DateInput())
+    session_end_year = forms.DateField(label="section start", required=True, widget=DateInput())
+    
+    class Meta:
+        model = SessionYearModel
+        
+        widget = {
+           'session_start_year':DateInput(),
+           'session_end_year':DateInput(),
+        }
+    
 class SubjectForm(forms.Form):
     
     #For Displaying Courses

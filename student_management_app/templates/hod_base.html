@@ -26,7 +26,7 @@
       <nav class="nav-bar">
         <ul class="nav-list">
           <li><img src="{% static 'images/logo.JPG' %}" alt="">COLLEDGE||MANAGEMENT SYSTEM</li>
-          <li>Logout</li>
+          <li><a href="{% url 'accounts:logout_user' %}"><button class="btn btn-primary">Logout</button></a></li>
         </ul>
 
       </nav>
@@ -40,7 +40,7 @@
     
     <div class="side-nav " id="sideNav">
       <ul class="side-nav-list" id ="sidenavlist">
-       <div id="closenav" onclick="closenav()">
+       <div id="closenav" onclick="closenav()" style="color: white;">
           <i class="fas fa-bars" ></i>
        </div>
       

@@ -16,15 +16,16 @@
 
                 <!-- activities session start-->
                 <div class="activities-section">
-                    <form>
+                    <form method="post">
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label">Session Start Year</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          {{form.session_start_year}}
                         </div>
                         <div class="mb-3">
                           <label for="exampleInputPassword1" class="form-label">Session End Year</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1">
+                          {{form.session_end_year}}
                         </div>
+                        
                         
                         <button type="submit" class="btn btn-primary">Add Session</button>
                       </form>

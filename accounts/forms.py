@@ -5,6 +5,7 @@ from student_management_app.models import Course, SessionYearModel
 
 
 
+
 class RegistrationForm(UserCreationForm):
     
     USER_TYPE_CHOICES = (
@@ -46,8 +47,7 @@ class LoginForm(AuthenticationForm):
 
 
 
-class DateInput(forms.DateInput):
-    input_type = "date"
+
  
  
 class AddStudentForm(forms.Form):
@@ -120,6 +120,8 @@ class AddStudentForm(forms.Form):
         password = self.cleaned_data['password']
         first_name = self.cleaned_data['first_name']
         last_name = self.cleaned_data['last_name']
+        
+       
 
         # Create a new user with the provided email and password
         user = CustomUser.objects.create_user(
