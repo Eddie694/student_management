@@ -25,6 +25,9 @@ class CustomUser(AbstractUser):
     )
 
     user_type = models.CharField(max_length=10, choices=user_type_data, default='select user')
+    
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class AdminHOD(models.Model):
@@ -33,6 +36,9 @@ class AdminHOD(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+    
+    def __str__(self):
+        return f"{self.admin.first_name} {self.admin.last_name}"
  
  
 class Staff(models.Model):
@@ -42,6 +48,9 @@ class Staff(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+    
+    def __str__(self):
+        return f"{self.admin.first_name} {self.admin.last_name}"
 
 
 class Student(models.Model):

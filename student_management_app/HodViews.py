@@ -154,30 +154,34 @@ def	manage_subject (request):
     }
     return render(request, 'hod_template/manage-subject.html', context)
 
-def	add_subject (request):
+
+def add_subject(request):
     if request.method == 'POST':
         form = SubjectForm(request.POST)
-        print(form)
-        subject_name=form.cleaned_data['subject_name']
-        course_id=form.cleaned_data['course_id']
-        staff_id=form.cleaned_data['staff_id']
-        
-        course_instance = Course.objects.get(pk=course_id)
-        staff_instance = CustomUser.objects.get(pk=staff_id)
+        if form.is_valid():
+            subject_name = form.cleaned_data['subject_name']
+            course_id = form.cleaned_data['course_id']  # Use the course instance directly
+            staff_id = form.cleaned_data['staff_id']  # Use the staff instance directly
             
-        new_subject = Subject(
-            subject_name=subject_name,
-            course_id=course_instance,
-            staff_id=staff_instance,
-        )
-        new_subject.save()
+           
+            course_instance = Course.objects.get(pk=course_id)
+            staff_instance = CustomUser.objects.get(pk=staff_id)
             
-        messages.success(request, "New Subject added ")
-        return redirect ('student_management_app:manage_subject')
+
+            # Create and save the new Subject instance
+            new_subject = Subject(
+                subject_name=subject_name,
+                course_id=course_instance,
+                staff_id=staff_instance,
+            )
+            new_subject.save()
+
+            messages.success(request, 'New Subject added.')
+            return redirect('student_management_app:manage_subject')
     else:
         form = SubjectForm()
-        
-    return render(request, 'hod_template/add-subject.html', {'form': form} )
+
+    return render(request, 'hod_template/add-subject.html', {'form': form})
 
 
 
