@@ -2,6 +2,7 @@ from django import forms
 from . models import CustomUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from student_management_app.models import Course, SessionYearModel
+from accounts.models import Student, Staff
 
 
 
@@ -51,6 +52,10 @@ class LoginForm(AuthenticationForm):
  
  
 class AddStudentForm(forms.Form):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
     email = forms.EmailField(label="Email",
                              max_length=50,
                              widget=forms.EmailInput(attrs={"class":"form-control"}))
@@ -122,7 +127,7 @@ class AddStudentForm(forms.Form):
         last_name = self.cleaned_data['last_name']
         
        
-
+        
         # Create a new user with the provided email and password
         user = CustomUser.objects.create_user(
             username=email,  # You can use the email as the username
@@ -137,8 +142,56 @@ class AddStudentForm(forms.Form):
         
         return user
  
- 
- 
+class AddStaffForm(forms.Form):
+            
+    email = forms.EmailField(label="Email",
+                             max_length=50,
+                             widget=forms.EmailInput(attrs={"class":"form-control"}))
+    password = forms.CharField(label="Password",
+                               max_length=50,
+                               widget=forms.PasswordInput(attrs={"class":"form-control"}))
+    first_name = forms.CharField(label="First Name",
+                                 max_length=50,
+                                 widget=forms.TextInput(attrs={"class":"form-control"}))
+    last_name = forms.CharField(label="Last Name",
+                                max_length=50,
+                                widget=forms.TextInput(attrs={"class":"form-control"}))
+    username = forms.CharField(label="Username",
+                               max_length=50,
+                               widget=forms.TextInput(attrs={"class":"form-control"}))
+    address = forms.CharField(label="Address",
+                              max_length=50,
+                              widget=forms.TextInput(attrs={"class":"form-control"}))
+    
+    class Meta:
+        model = Staff
+        fields = ['first_name', 'last_name', 'email', 'password', 'address', 'username']
+        
+        
+    def save(self):
+         # Extract cleaned data from the form
+        email = self.cleaned_data['email']
+        password = self.cleaned_data['password']
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
+        
+        # Create a new user with the provided email and password
+        user = CustomUser.objects.create_user(
+            username=email,  # You can use the email as the username
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            user_type=CustomUser.STAFF,
+        )
+        
+        user.save()
+        
+        return user
+        
+        
+         
+
 class EditStudentForm(forms.Form):
     email = forms.EmailField(label="Email",
                              max_length=50,

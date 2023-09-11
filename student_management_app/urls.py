@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from . import StaffViews, StudentViews, HodViews
 
+
 app_name = 'student_management_app'
 
 

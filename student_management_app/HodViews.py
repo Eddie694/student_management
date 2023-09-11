@@ -4,7 +4,7 @@ from accounts.models import Student, Staff, AdminHOD
 from django.contrib import messages
 from .forms import SubjectForm, SessionForm
 from accounts.models import CustomUser
-from accounts.forms import AddStudentForm
+from accounts.forms import AddStudentForm, AddStaffForm
 
 
 
@@ -27,10 +27,39 @@ def	admin_home (request):
 # staff session 
 
 def	add_staff (request):
-    return render(request, 'hod_template/add-staff.html')
+    if request.method == 'POST':
+        form = AddStaffForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name'] 
+            address=form.cleaned_data['address']
+            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
+            
+            if CustomUser.objects.filter(email=email).exists():
+                messages.error(request, 'User with this email id already exists. Please use a different email')
+            elif CustomUser.objects.filter(username=username).exists():
+                messages.error(request, 'User with this username already exists. Please use a different username.')
+            else:
+                user = form.save()
+                messages.success(request, "New staff added")
+                return redirect('student_management_app:manage_staff')
+    else:
+        form = AddStaffForm()
+
+    context = {
+            'form': form,
+        }
+                   
+    return render(request, 'hod_template/add-staff.html', context)
 
 def	manage_staff (request):
-    return render(request, 'hod_template/manage-staff.html')
+    staffs = Staff.objects.all().order_by('-created_at')
+    
+    context={
+        'staffs': staffs
+    }
+    return render(request, 'hod_template/manage-staff.html', context)
 
 # Course Session
 def	add_course(request):
@@ -77,9 +106,17 @@ def add_student(request):
     if request.method == 'POST':
         form = AddStudentForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            messages.success(request, "New student added")
-            return redirect('student_management_app:manage_student')
+            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
+            
+            if CustomUser.objects.filter(email=email).exists():
+                messages.error(request, 'User with this email id already exists. Please use a different email')
+            elif CustomUser.objects.filter(username=username).exists():
+                messages.error(request, 'User with this username already exists. Please use a different username.')
+            else:
+                user = form.save()
+                messages.success(request, "New student added")
+                return redirect('student_management_app:manage_student')
         else:
             form = AddStudentForm()
 
