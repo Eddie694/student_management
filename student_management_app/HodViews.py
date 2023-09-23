@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+import json
 from .models import SessionYearModel, Course, Subject, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, NotificationStudent, NotificationStaff, StudentResult
 from accounts.models import Student, Staff, AdminHOD
 from django.contrib import messages
@@ -17,11 +18,11 @@ def	admin_home (request):
     
     
     session_years = SessionYearModel.objects.all()
-    students = Student.objects.all()
+    students = Student.objects.values_list('gender', flat=True).distinct()
 
     labels = []          # To store the years as labels
     student_counts = []  # To store the corresponding student counts
-    gender_label = []
+    gender_labels = []
     gender_counts = []
     
 
@@ -34,22 +35,21 @@ def	admin_home (request):
         student_count = Student.objects.filter(session_year_id=year).count()
         student_counts.append(student_count)
     
-    for student in students:
-        gender_label.append(student.gender)
-        
-        gender_count = Student.objects.filter(gender=student).count()
-        gender_counts.append(gender_count)
+    for gender in students:
+        gender_labels.append(gender)
+        gender_count = students.filter(gender=gender).count()  # Count students with this gender
+        gender_counts.append(gender_count)  #
     
     print("This is label:", labels)
     print("student counts is:", student_counts)
     print("gender counts is:", gender_counts)
-    print("gender label is:", gender_label)
+    print("gender label is:", gender_labels)
 
     contex ={
         'labels':labels,
         'student_counts':student_counts,
-        'gender_label':gender_label,
-        'gender_counts':gender_counts,
+        'gender_labels': json.dumps(gender_labels),
+        'gender_counts': json.dumps(gender_counts),
         'total_teachers':total_teachers,
         'total_students': total_students,
         'total_courses': total_courses,

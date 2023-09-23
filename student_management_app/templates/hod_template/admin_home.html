@@ -144,6 +144,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    
     const ctx = document.getElementById('barchart');
     // Use Django template tags to output the values of labels and student_counts
     const labels = JSON.parse('{{ labels | escapejs }}');
@@ -153,7 +154,7 @@
       data: {
         labels: labels,
         datasets: [{
-          label: '# of Votes',
+          label: 'Enrolment of Student by year',
           data: studentCounts,
           borderWidth: 1
         }]
@@ -167,16 +168,16 @@
       }
     });
 
+
+
     const ctx1 = document.getElementById('pie');
-    const genderlabels = JSON.parse('{{ gender_labels | escapejs }}');
-    const genderCounts = JSON.parse('{{ gender_counts | escapejs }}');
     new Chart(ctx1, {
       type: 'pie',
       data: {
-        labels: genderlabels,
+        labels: JSON.parse('{{ gender_labels | safe }}'),
         datasets: [{
           label: '# of Votes',
-          data: genderCounts,
+          data: JSON.parse('{{ gender_counts | safe }}'),
           borderWidth: 1
         }]
       },
