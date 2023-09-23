@@ -11,14 +11,13 @@
           <h2>Manage Courses</h2>
           <a href="{% url 'student_management_app:add_course' %}"><button type="button" class="btn btn-primary mt-4">Add Course</button></a>
 
-
-        </div>
+        </div> 
         <!-- chart card end -->
+        <br>
         {% for message in messages %}
-        <div>
-            {{message}}
-          </div>
-
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <h6 style="color:red;">{{message}}</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
          
 

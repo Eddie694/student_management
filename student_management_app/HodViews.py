@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .models import SessionYearModel, Course, Subject, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, NotificationStudent, NotificationStaff, StudentResult
 from accounts.models import Student, Staff, AdminHOD
 from django.contrib import messages
@@ -15,16 +16,49 @@ def	admin_home (request):
     total_subjects = Subject.objects.all().count()
     
     
+    session_years = SessionYearModel.objects.all()
+    students = Student.objects.all()
+
+    labels = []          # To store the years as labels
+    student_counts = []  # To store the corresponding student counts
+    gender_label = []
+    gender_counts = []
     
+
+
+    for year in session_years:
+        # Extract the year from session_start_year and append it to labels
+        labels.append(year.session_start_year.year)
+
+        # Calculate the number of students for the current year and append it to student_counts
+        student_count = Student.objects.filter(session_year_id=year).count()
+        student_counts.append(student_count)
+    
+    for student in students:
+        gender_label.append(student.gender)
+        
+        gender_count = Student.objects.filter(gender=student).count()
+        gender_counts.append(gender_count)
+    
+    print("This is label:", labels)
+    print("student counts is:", student_counts)
+    print("gender counts is:", gender_counts)
+    print("gender label is:", gender_label)
+
     contex ={
+        'labels':labels,
+        'student_counts':student_counts,
+        'gender_label':gender_label,
+        'gender_counts':gender_counts,
         'total_teachers':total_teachers,
         'total_students': total_students,
         'total_courses': total_courses,
         'total_subjects':total_subjects
+       
     }
-    return render(request, 'hod_template/admin_home.html', contex ) 
+    return render(request, 'hod_template/admin_home.html', contex) 
 
-# staff session 
+#=====================================staff session=============================================================
 
 def	add_staff (request):
     if request.method == 'POST':
@@ -61,7 +95,7 @@ def	manage_staff (request):
     }
     return render(request, 'hod_template/manage-staff.html', context)
 
-# Course Session
+#==============================================================Course Session=================================================================
 def	add_course(request):
     if request.method == 'POST':
         course_name = request.POST.get('course_name')
@@ -85,23 +119,30 @@ def	manage_course (request):
     
     return render(request, 'hod_template/manage-course.html' , context)
 
-#Session Area
+#====================================================================Session Area======================================================
 def	manage_session (request):
-    return render(request, 'hod_template/manage-session.html')
+    sessions = SessionYearModel.objects.all()
+    
+    context = {
+        'sessions': sessions,
+    }
+    return render(request, 'hod_template/manage-session.html', context)
 
-def	add_session	(request):
+def add_session(request):
     if request.method == 'POST':
-        form=SessionForm(request.POST)
+        form = SessionForm(request.POST)
         if form.is_valid():
             new_session = form.save()
-            
-            messages.success(request, "New session added ")
+            messages.success(request, "New session added")
             return redirect("student_management_app:manage_session")
-    
-    return render(request, 'hod_template/add-session.html')
+    else:
+        # Initialize an empty form for GET requests
+        form = SessionForm()
+
+    return render(request, 'hod_template/add-session.html', {'form': form})
 
 
-#Student Session
+#=============================Student Session====================================================================================
 def add_student(request):
     if request.method == 'POST':
         form = AddStudentForm(request.POST)
@@ -114,9 +155,34 @@ def add_student(request):
             elif CustomUser.objects.filter(username=username).exists():
                 messages.error(request, 'User with this username already exists. Please use a different username.')
             else:
-                user = form.save()
-                messages.success(request, "New student added")
-                return redirect('student_management_app:manage_student')
+                # Create a new user with the provided email and password
+                user, created = CustomUser.objects.get_or_create(
+                    username=email,  # You can use the email as the username
+                    email=email,
+                    password=form.cleaned_data['password'],
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name'],
+                    user_type=CustomUser.STUDENT,
+                )
+                
+                if created:
+                    # User was created successfully, proceed with creating the student
+                    student = Student(
+                        admin=user,
+                        gender=form.cleaned_data['gender'],
+                        profile_pic=form.cleaned_data['profile_pic'],
+                        address=form.cleaned_data['address'],
+                        course_id=Course.objects.get(id=form.cleaned_data['course_id']),
+                        session_year_id=SessionYearModel.objects.get(id=form.cleaned_data['session_year_id']),
+                    )
+                    print(f"User: {user}")
+                    print(f"Student: {student.address}; Profile picture: {student.profile_pic}")
+                    student.save()
+                    
+                    messages.success(request, "New student added")
+                    return redirect('student_management_app:manage_student')
+                else:
+                    messages.error(request, 'User with this email id already exists. Please use a different email')
         else:
             form = AddStudentForm()
 
@@ -134,6 +200,7 @@ def add_student(request):
         return render(request, 'hod_template/add-student.html', context)
 
 
+
 def	manage_student (request):
     students = Student.objects.all().order_by('-created_at')
     
@@ -145,7 +212,7 @@ def	manage_student (request):
 
 
 
-#subject session
+#============================================================subject session=============================================================
 def	manage_subject (request):
     subjects = Subject.objects.all()
     

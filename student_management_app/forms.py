@@ -8,17 +8,13 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 
-class SessionForm(forms.Form):
-    session_start_year = forms.DateField(label="section start", required=True, widget=DateInput())
-    session_end_year = forms.DateField(label="section start", required=True, widget=DateInput())
+class SessionForm(forms.ModelForm):
+    session_start_year = forms.DateField(label="section start", required=True, widget=DateInput(attrs={'class': 'form-control'}))
+    session_end_year = forms.DateField(label="section start", required=True, widget=DateInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = SessionYearModel
-        
-        widget = {
-           'session_start_year':DateInput(),
-           'session_end_year':DateInput(),
-        }
+        fields = ['session_start_year', 'session_end_year']
     
 
 class SubjectForm(forms.Form):

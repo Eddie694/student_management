@@ -8,6 +8,9 @@ class SessionYearModel(models.Model):
     session_start_year = models.DateField()
     session_end_year = models.DateField()
     objects = models.Manager()
+    
+    def __str__(self):
+        return self.session_start_year.strftime('%Y')
 
 
 

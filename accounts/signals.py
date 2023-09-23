@@ -9,17 +9,17 @@ def create_user_profile(sender, instance, created, **kwargs):
             AdminHOD.objects.create(admin=instance)
         elif instance.user_type == CustomUser.STAFF:
             Staff.objects.create(admin=instance)
-        elif instance.user_type == CustomUser.STUDENT:
-            course = Course.objects.first()  # Get a course instance (you might want to handle this better)
-            session_year = SessionYearModel.objects.first()  # Get a session year instance
-            Student.objects.create(
-                admin=instance,
-                course_id=course,
-                session_year_id=session_year,
-                address="",
-                profile_pic="",
-                gender=""
-            )
+        # elif instance.user_type == CustomUser.STUDENT:
+        #     course = Course.objects.first()  # Get a course instance (you might want to handle this better)
+        #     session_year = SessionYearModel.objects.first()  # Get a session year instance
+        #     Student.objects.create(
+        #         admin=instance,
+        #         course_id=course,
+        #         session_year_id=session_year,
+        #         address="",
+        #         profile_pic="",
+        #         gender=""
+        #     )
 
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):
@@ -27,5 +27,5 @@ def save_user_profile(sender, instance, **kwargs):
         instance.adminhod.save()
     elif instance.user_type == CustomUser.STAFF:
         instance.staff.save()
-    elif instance.user_type == CustomUser.STUDENT:
-        instance.student.save()
+    # elif instance.user_type == CustomUser.STUDENT:
+    #     instance.student.save()
