@@ -58,7 +58,7 @@
                 <td> {{ subject.staff_id.first_name }} {{ subject.staff_id.last_name }}</td>
                 <td>{{subject.created_at}}</td>
                 
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'student_management_app:edit_subject' subject_id=subject.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
 
               </tr>

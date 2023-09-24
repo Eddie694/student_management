@@ -57,7 +57,7 @@
                 <td>{{course.course_name}}</td>
                 <td>{{course.created_at}}</td>
                 <td>{{ course.updated_at}}</td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'student_management_app:edit_course' course_id=course.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
 
               </tr>

@@ -56,7 +56,7 @@
                 <th scope="row">{{session.id}}</th>
                 <td>{{session.session_start_year|date:"Y"}}</td>
                 <td>{{session.session_end_year|date:"Y"}}</td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'student_management_app:edit_session' session_id=session.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
               </tr>
               {% endfor %}

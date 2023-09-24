@@ -59,7 +59,7 @@
               <td>{{staff.admin.first_name}}</td>
               <td>{{staff.admin.last_name}}</td>
               <td>{{staff.admin.email}}</td>
-              <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+              <td><a href="{% url 'student_management_app:edit_staff' staff_id=staff.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
               <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>
             {% endfor %}

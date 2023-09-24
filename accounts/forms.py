@@ -115,45 +115,6 @@ class AddStudentForm(forms.Form):
     profile_pic = forms.FileField(label="Profile Pic",
                                   required=False,
                                   widget=forms.FileInput(attrs={"class":"form-control"}))
-    
-    # def save(self):
-    #     # Extract cleaned data from the form
-    #     email = self.cleaned_data['email']
-    #     password = self.cleaned_data['password']
-    #     first_name = self.cleaned_data['first_name']
-    #     last_name = self.cleaned_data['last_name']
-    #     gender = self.cleaned_data['gender']
-    #     profile_pic = self.cleaned_data['profile_pic']
-    #     address = self.cleaned_data['address']
-    #     course_id = self.cleaned_data['course_id']
-    #     session_year_id = self.cleaned_data['session_year_id']
-        
-       
-        
-    #     # Create a new user with the provided email and password
-    #     user = CustomUser.objects.create_user(
-    #         username=email,  # You can use the email as the username
-    #         email=email,
-    #         password=password,
-    #         first_name=first_name,
-    #         last_name=last_name,
-    #         user_type=CustomUser.STUDENT,
-    #     )
-        
-    #        # Create a new student with additional student-specific fields
-    #     student = Student(
-    #         admin=user,
-    #         gender=gender,
-    #         profile_pic=profile_pic,
-    #         address=address,
-    #         course_id=Course.objects.get(id=course_id),
-    #         session_year_id=SessionYearModel.objects.get(id=session_year_id)
-    #     )
-        
-    #     user.save()
-    #     student.save()
-        
-    #     return user, student
  
 class AddStaffForm(forms.Form):
             
@@ -202,10 +163,33 @@ class AddStaffForm(forms.Form):
         
         return user
         
-        
+class EditStaffForm(forms.ModelForm):
+            
+    email = forms.EmailField(label="Email",
+                             max_length=50,
+                             widget=forms.EmailInput(attrs={"class":"form-control"}))
+    password = forms.CharField(label="Password",
+                               max_length=50,
+                               widget=forms.PasswordInput(attrs={"class":"form-control"}))
+    first_name = forms.CharField(label="First Name",
+                                 max_length=50,
+                                 widget=forms.TextInput(attrs={"class":"form-control"}))
+    last_name = forms.CharField(label="Last Name",
+                                max_length=50,
+                                widget=forms.TextInput(attrs={"class":"form-control"}))
+    username = forms.CharField(label="Username",
+                               max_length=50,
+                               widget=forms.TextInput(attrs={"class":"form-control"}))
+    address = forms.CharField(label="Address",
+                              max_length=50,
+                              widget=forms.TextInput(attrs={"class":"form-control"}))
+    
+    class Meta:
+        model = Staff
+        fields = ['first_name', 'last_name', 'email', 'address', 'username']    
          
 
-class EditStudentForm(forms.Form):
+class EditStudentForm(forms.ModelForm):
     email = forms.EmailField(label="Email",
                              max_length=50,
                              widget=forms.EmailInput(attrs={"class":"form-control"}))
@@ -261,5 +245,9 @@ class EditStudentForm(forms.Form):
     profile_pic = forms.FileField(label="Profile Pic",
                                   required=False,
                                   widget=forms.FileInput(attrs={"class":"form-control"}))
+    
+    class Meta:
+        model = Student
+        fields = ['first_name', 'last_name', 'email', 'address', 'username', 'session_year_id', 'gender', 'course_id', 'profile_pic'] 
 
 

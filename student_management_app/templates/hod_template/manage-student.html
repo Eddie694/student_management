@@ -19,6 +19,7 @@
             <h6 style="color:red;">{{message}}</h6>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        {% endfor %}
         <!-- chart card end -->
 
 
@@ -70,7 +71,7 @@
                     0
                   {% endif %}
                 </td>
-                <td><a href=""><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'student_management_app:edit_student' student_id=student.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
 
               </tr>

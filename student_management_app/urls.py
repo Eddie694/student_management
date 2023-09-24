@@ -42,24 +42,34 @@ urlpatterns = [
 
 
 
-     # URL for Admin
+     #====================URL for Admin=======================================================================
     path('admin_home/', HodViews.admin_home, name="admin_home"),
     path('add_staff/', HodViews.add_staff, name="add_staff"),
     path('manage_staff/', HodViews.manage_staff, name="manage_staff"),
+    path('edit_staff/<staff_id>/', HodViews.edit_staff, name="edit_staff"),
+    path('delete_staff/<staff_id>/', HodViews.delete_staff, name="delete_staff"),
     
     path('add_course/', HodViews.add_course, name="add_course"),
     path('manage_course/', HodViews.manage_course, name="manage_course"),
+    path('edit_course/<course_id>/', HodViews.edit_course, name="edit_course"),
+    path('delete_course/<course_id>/', HodViews.delete_course, name="delete_course"),
     
     
     path('manage_session/', HodViews.manage_session, name="manage_session"),
     path('add_session/', HodViews.add_session, name="add_session"),
+    path('edit_session/<session_id>', HodViews.edit_session, name="edit_session"),
+    path('delete_session/<session_id>/', HodViews.delete_session, name="delete_session"),
     
     
     path('add_student/', HodViews.add_student, name="add_student"),
     path('manage_student/', HodViews.manage_student, name="manage_student"),
+    path('edit_student/<student_id>', HodViews.edit_student, name="edit_student"),
+    path('delete_student/<student_id>/', HodViews.delete_student, name="delete_student"),
     
     path('manage_subject/', HodViews.manage_subject, name="manage_subject"),
     path('add_subject/', HodViews.add_subject, name="add_subject"),
+    path('edit_subject/<subject_id>/', HodViews.edit_subject, name="edit_subject"),
+    path('delete_subject/<subject_id>/', HodViews.delete_subject, name="delete_subject"),
     
     path('admin_staff_feedback/', HodViews.admin_staff_feedback, name="admin_staff_feedback"),
     path('admin_student_feedback/', HodViews.admin_student_feedback, name="admin_student_feedback"),

@@ -9,7 +9,7 @@ from accounts.models import CustomUser
 from accounts.forms import AddStudentForm, AddStaffForm
 
 
-
+#=========================================ADMIN================================================================
 def	admin_home (request):
     total_teachers = Staff.objects.all().count()
     total_students = Student.objects.all().count()
@@ -20,18 +20,15 @@ def	admin_home (request):
     session_years = SessionYearModel.objects.all()
     students = Student.objects.values_list('gender', flat=True).distinct()
 
-    labels = []          # To store the years as labels
-    student_counts = []  # To store the corresponding student counts
+    labels = []         
+    student_counts = []  
     gender_labels = []
     gender_counts = []
     
 
 
     for year in session_years:
-        # Extract the year from session_start_year and append it to labels
         labels.append(year.session_start_year.year)
-
-        # Calculate the number of students for the current year and append it to student_counts
         student_count = Student.objects.filter(session_year_id=year).count()
         student_counts.append(student_count)
     
@@ -95,6 +92,11 @@ def	manage_staff (request):
     }
     return render(request, 'hod_template/manage-staff.html', context)
 
+def edit_staff(request, staff_id):
+    return render(request, 'hod_template/edit_staff.html')
+
+def delete_staff(request, staff_id):
+    return render(request, 'hod_template/edit-staff.html')
 #==============================================================Course Session=================================================================
 def	add_course(request):
     if request.method == 'POST':
@@ -119,6 +121,12 @@ def	manage_course (request):
     
     return render(request, 'hod_template/manage-course.html' , context)
 
+def edit_course(request, course_id):
+    return render(request, 'hod_template/edit_course.html')
+
+def delete_course(request, course_id):
+    return render(request, 'hod_template/edit-staff.html')
+
 #====================================================================Session Area======================================================
 def	manage_session (request):
     sessions = SessionYearModel.objects.all()
@@ -141,6 +149,12 @@ def add_session(request):
 
     return render(request, 'hod_template/add-session.html', {'form': form})
 
+def edit_session(request, session_id):
+    return render(request, 'hod_template/edit_session.html')
+
+
+def delete_session(request, session_id):
+    return render(request, 'hod_template/edit-staff.html')
 
 #=============================Student Session====================================================================================
 def add_student(request):
@@ -211,6 +225,12 @@ def	manage_student (request):
     return render(request, 'hod_template/manage-student.html', context)
 
 
+def edit_student(request, student_id):
+    return render(request, 'hod_template/edit_student.html')
+
+def delete_student(request, student_id):
+    return render(request, 'hod_template/edit-staff.html')
+
 
 #============================================================subject session=============================================================
 def	manage_subject (request):
@@ -250,8 +270,13 @@ def add_subject(request):
 
     return render(request, 'hod_template/add-subject.html', {'form': form})
 
+def edit_subject(request, subject_id):
+    return render(request, 'hod_template/edit_subject')
 
+def delete_subject(request, subject_id):
+    return render(request, 'hod_template/edit-staff.html')
 
+#=====================================Feedback section============================================================
 def	admin_staff_feedback (request):
     return render(request, 'hod_template/staff-feedback.html')
 
