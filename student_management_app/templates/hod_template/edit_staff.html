@@ -1,0 +1,69 @@
+{% extends 'hod_base.html' %}
+{% block content %}
+
+
+        <!-- Main section start -->
+        <div class="main-content" id="maincontent">
+            <div class="main-container">
+                <!-- chart card start -->
+                <div class="chart-card manage-staff-title">
+
+                    <h2>Edit staff record</h2>
+
+                </div>
+                <!-- chart card end -->
+
+
+                <!-- activities session start-->
+                <div class="activities-section">
+                  
+                    <div class="form-container ps-5 pe-5" style="width: 90%;">
+                        <form method ="post" class="row g-1">
+                          {% csrf_token %}
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label">&nbsp;First Name</label>
+                              {{form.first_name}}
+                            </div>
+                            <div class="col-md-5">
+                              <label for="inputPassword4" class="form-label">&nbsp;Last Name</label>
+                              {{form.last_name}}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">&nbsp;Username</label>
+                                {{form.username}}
+                              </div>
+                              <div class="col-md-5">
+                                <label for="inputPassword4" class="form-label">&nbsp;Email</label>
+                                {{form.email}}
+                              </div>
+                              
+                            <div class="col-12">
+                              <label for="inputAddress" class="form-label">&nbsp;Address</label>
+                              {{form.address}}
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">&nbsp;Password</label>
+                                {{form.password}}
+                              </div>
+                            
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary">Update staff</button>
+                            </div>
+                          </form>
+
+                    </div>
+                    
+                </div>
+
+                <!-- activities session end-->
+            </div>
+
+        </div>
+        <!-- Main section stop -->
+
+    </div>
+    <!-- container-section stop -->
+
+
+
+{% endblock %}

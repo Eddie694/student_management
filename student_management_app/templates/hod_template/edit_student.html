@@ -1,0 +1,97 @@
+{% extends 'hod_base.html' %}
+{% block content %}
+
+
+        <!-- Main section start -->
+        <div class="main-content" id="maincontent">
+            <div class="main-container">
+                <!-- chart card start -->
+                <div class="chart-card manage-staff-title">
+
+                    <h2>Edit student record</h2>
+
+                </div>
+                <!-- chart card end -->
+
+
+                <!-- activities session start-->
+                <div class="activities-section">
+                  {% for message in messages %}
+                  <h6 style="color:red;">{{message}}</h6>
+                  {% endfor %}
+                    <div class="form-container ps-5 pe-5" style="width: 90%;">
+                        <form method ="post" class="row g-1">
+                          {% csrf_token %}
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label">&nbsp;First Name</label>
+                              {{form.first_name}}
+                            </div>
+                            <div class="col-md-5">
+                              <label for="inputPassword4" class="form-label">&nbsp;Last Name</label>
+                              {{form.last_name}}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">&nbsp;Username</label>
+                                {{form.username}}
+                              </div>
+                              <div class="col-md-5">
+                                <label for="inputPassword4" class="form-label">&nbsp;Email</label>
+                                {{form.email}}
+                              </div>
+                              <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">&nbsp;Course</label>
+                                {{form.course_id}}
+                              </div>
+                              <div class="col-md-5">
+                                <label for="inputPassword4" class="form-label">&nbsp;Session</label>
+                                {{form.session_year_id}}
+                              </div>
+                              <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">&nbsp;Profile Picture</label>
+                                {{form.profile_pic}}
+                              </div>
+                              <div class="col-md-5">
+                                <label for="inputPassword4" class="form-label">&nbsp;Gender</label>
+                                {{form.gender}}
+                              </div>
+                            <div class="col-12">
+                              <label for="inputAddress" class="form-label">&nbsp;Address</label>
+                              {{form.address}}
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">&nbsp;Password</label>
+                                {{form.password}}
+                              </div>
+                            
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary">Update student</button>
+                            </div>
+                          </form>
+
+                    </div>
+                    
+                </div>
+
+                <!-- activities session end-->
+            </div>
+
+
+
+
+
+        </div>
+        <!-- Main section stop -->
+
+    </div>
+    <!-- container-section stop -->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

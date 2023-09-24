@@ -1,0 +1,53 @@
+{% extends 'hod_base.html' %}
+{% block content %}
+
+
+        <!-- Main section start -->
+        <div class="main-content" id="maincontent">
+            <div class="main-container">
+                <!-- chart card start -->
+                <div class="chart-card manage-staff-title">
+
+                    <h2>Edit session</h2>
+
+                </div>
+                <!-- chart card end -->
+
+
+                <!-- activities session start-->
+                <div class="activities-section">
+                     
+                    <form method="post">
+                         {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Session Start Year</label>
+                          {{form.session_start_year}}
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Session End Year</label>
+                          {{form.session_end_year}}
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-primary">Update Session</button>
+                      </form>
+                </div>
+
+                <!-- activities session end-->
+            </div>
+
+
+
+
+
+        </div>
+        <!-- Main section stop -->
+
+    </div>
+    <!-- container-section stop -->
+
+
+
+
+
+    {% endblock %}

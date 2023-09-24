@@ -1,0 +1,51 @@
+    {% extends 'hod_base.html' %}
+        {% block content %}
+
+
+        <!-- Main section start -->
+        <div class="main-content" id="maincontent">
+            <div class="main-container">
+                <!-- chart card start -->
+                <div class="chart-card manage-staff-title">
+
+                    <h2>Edit Course</h2>
+
+                </div>
+                <!-- chart card end -->
+
+
+                <!-- activities session start-->
+                <div class="activities-section">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="course_name" class="form-label">Course Name:</label>
+                          <input type="text" class="form-control" id="course_name" aria-describedby="emailHelp" name="course_name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Course</button>
+                      </form>
+                </div>
+
+                <!-- activities session end-->
+            </div>
+
+
+
+
+
+        </div>
+        <!-- Main section stop -->
+
+    </div>
+    <!-- container-section stop -->
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
